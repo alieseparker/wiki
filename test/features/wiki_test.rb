@@ -1,9 +1,14 @@
 require "test_helper"
 
-class WikiTest < Capybara::Rails::TestCase
-  test "sanity" do
+feature 'Wiki Site' do
+  scenario 'Write a new recipe' do
+    sign_in
     visit root_path
-    assert_content page, "Hello World"
-    refute_content page, "Goobye All!"
+    click_on 'New Recipe'
+
+    fill_in 'Title', with: 'Tomato Bisque'
+    click_on 'Create Recipe'
+    page.text.must_have 'Recipe has been succesfully created.'
+    page.text.must_include users(:Aliese).email
   end
 end

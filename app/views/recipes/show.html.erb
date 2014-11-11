@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @recipe.title %>
+</p>
+
+<p>
+  <strong>Steps:</strong>
+  <%= @recipe.steps %>
+</p>
+
+<section>
+  <p>Created by: <%= @recipe.users[0].email %> </p>
+  <p>
+    Contributors:
+    <% @recipe.users.each_with_index do |user, index| %>
+      <% next if index == 0 %>
+      <%= user['email'] %>
+      <% if index != @recipe.users.count - 1 %>
+      <% end %>
+    <% end %>
+  </p>
+</section>
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>

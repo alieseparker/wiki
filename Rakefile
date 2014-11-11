@@ -7,7 +7,6 @@ Rails.application.load_tasks
 
 task default: 'test:run'
 
-
 Rake::Task['test:run'].enhance ['test:features']
 
 Rails::TestTask.new('test:features' => 'test:prepare') do |t|
